@@ -42,9 +42,8 @@ fun main() {
         val middlePageSum = unorderedPageLines.map { line ->
             orderList.filter { order -> order.first in line }
                 .map { triple -> Pair(triple.first, triple.second.filter { it in line }.size)}
-                .sortedBy { it.second } }
-            .sumOf { it[it.size/2].first }
-
+                .sortedBy { it.second }
+        }.sumOf { it[it.size/2].first }
         return middlePageSum
     }
 
