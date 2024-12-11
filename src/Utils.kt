@@ -19,3 +19,30 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+data class Position (val x: Int, val y: Int)
+
+data class PathPosition (val pos: Position, val dir: Direction)
+
+enum class Direction {
+    NORTH, EAST, SOUTH, WEST;
+
+    fun turnRight(): Direction {
+        return when(this) {
+            NORTH -> EAST
+            EAST -> SOUTH
+            SOUTH -> WEST
+            WEST -> NORTH
+        }
+    }
+
+    fun opposite(): Direction {
+        return when(this) {
+            NORTH -> SOUTH
+            EAST -> WEST
+            SOUTH -> NORTH
+            WEST -> EAST
+        }
+    }
+}
+
