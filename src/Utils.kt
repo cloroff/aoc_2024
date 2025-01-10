@@ -20,7 +20,16 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  */
 fun Any?.println() = println(this)
 
-data class Position (val x: Int, val y: Int)
+data class Position (val x: Int, val y: Int) {
+    fun neighbour(dir: Direction) : Position {
+        return when(dir) {
+            Direction.NORTH -> Position(x, y-1)
+            Direction.EAST -> Position(x+1, y)
+            Direction.SOUTH -> Position(x, y+1)
+            Direction.WEST -> Position(x-1, y)
+        }
+    }
+}
 
 data class PathPosition (val pos: Position, val dir: Direction)
 
